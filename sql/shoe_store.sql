@@ -5,6 +5,7 @@ DROP TABLE users;
 CREATE TABLE users
 (
     ID SERIAL PRIMARY KEY,
+    username VARCHAR(20) not NULL,
     first_name VARCHAR(30) not NULL,
     last_name VARCHAR(30) not NULL,
     house_number VARCHAR(5) not NULL,
@@ -14,11 +15,11 @@ CREATE TABLE users
 );
 
 INSERT INTO users
-    (first_name, last_name, house_number, street, town, post_code)
+    (username, first_name, last_name, house_number, street, town, post_code)
 VALUES
-    ('Tam', 'OD', '1', 'Street Road', 'Edinburgh', 'EH1 1CC'),
-    ('Jim', 'Michaels', '3', 'Fast Lane', 'London', 'W15 3UX'),
-    ('James', 'Stevenson', '145', 'Moon Cresent', 'Glasgow', 'G1 5UI');
+    ('tam_od', 'Tam', 'OD', '1', 'Street Road', 'Edinburgh', 'EH1 1CC'),
+    ('jmikey', 'Jim', 'Michaels', '3', 'Fast Lane', 'London', 'W15 3UX'),
+    ('jamesS' , 'James', 'Stevenson', '145', 'Moon Cresent', 'Glasgow', 'G1 5UI');
 
 CREATE TABLE shoes
 (
