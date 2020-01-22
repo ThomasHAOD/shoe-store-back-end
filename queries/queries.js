@@ -39,12 +39,15 @@ const getUsers = (request, response) => {
 };
 
 const getUsernames = (request, response) => {
-  pool.query("SELECT username FROM users ORDER BY id ASC", (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT username, id FROM users ORDER BY id ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const getUserById = (request, response) => {
