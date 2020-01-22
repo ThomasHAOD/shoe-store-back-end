@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const port = 8000;
-const db = require("./queries");
+const db = require("./queries/queries");
 
 app.use(bodyParser.json());
 
@@ -39,3 +39,6 @@ app.listen(port, () => {
 
 app.get("/shoes", db.getShoes);
 app.get("/shoes/:id", db.getShoeById);
+
+app.get("/users", db.getUsers);
+app.get("/users/:id", db.getUserById);
