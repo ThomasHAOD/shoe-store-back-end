@@ -5,12 +5,12 @@ DROP TABLE users;
 CREATE TABLE users
 (
     ID SERIAL PRIMARY KEY,
-    first_name VARCHAR(30),
-    last_name VARCHAR(30),
-    house_number VARCHAR(5),
-    street VARCHAR(30),
-    town VARCHAR(15),
-    post_code VARCHAR(10)
+    first_name VARCHAR(30) not NULL,
+    last_name VARCHAR(30) not NULL,
+    house_number VARCHAR(5) not NULL,
+    street VARCHAR(30) not NULL,
+    town VARCHAR(15) not NULL,
+    post_code VARCHAR(10) not NULL
 );
 
 INSERT INTO users
