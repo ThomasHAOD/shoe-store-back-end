@@ -41,4 +41,5 @@ app.get("/shoes", db.getShoes);
 app.get("/shoes/:id", db.getShoeById);
 
 app.get("/users", db.getUsers);
+app.get("/users/names", db.getUsersNames);
 app.get("/users/:id", db.getUserById);

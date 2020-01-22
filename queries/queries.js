@@ -38,6 +38,18 @@ const getUsers = (request, response) => {
   });
 };
 
+const getUsersNames = (request, response) => {
+  pool.query(
+    "SELECT first_name, last_name FROM users ORDER BY id ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const getUserById = (request, response) => {
   const id = parseInt(request.params.id);
 
@@ -53,5 +65,6 @@ module.exports = {
   getShoes,
   getShoeById,
   getUsers,
+  getUsersNames,
   getUserById
 };
