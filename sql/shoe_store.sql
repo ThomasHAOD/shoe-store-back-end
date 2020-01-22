@@ -1,4 +1,24 @@
 DROP TABLE shoes;
+DROP TABLE users;
+
+
+CREATE TABLE users
+(
+    ID SERIAL PRIMARY KEY,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    house_number VARCHAR(5),
+    street VARCHAR(30),
+    town VARCHAR(15),
+    post_code VARCHAR(10)
+);
+
+INSERT INTO users
+    (first_name, last_name, house_number, street, town, post_code)
+VALUES
+    ('Tam', 'OD', '1', 'Street Road', 'Edinburgh', 'EH1 1CC'),
+    ('Jim', 'Michaels', '3', 'Fast Lane', 'London', 'W15 3UX'),
+    ('James', 'Stevenson', '145', 'Moon Cresent', 'Glasgow', 'G1 5UI');
 
 CREATE TABLE shoes
 (
