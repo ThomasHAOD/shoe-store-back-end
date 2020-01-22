@@ -32,14 +32,15 @@ CREATE TABLE shoes
     price REAL not NULL,
     mens BOOLEAN not NULL,
     womens BOOLEAN not NULL,
-    kids BOOLEAN not NULL
+    kids BOOLEAN not NULL,
+    stock_level INT8 not NULL
 );
 
 INSERT INTO shoes
-    (name, color, size, brand, type, price, mens, womens, kids)
+    (name, color, size, brand, type, price, mens, womens, kids, stock_level)
 VALUES
-    ('Cool Air', 'White', 10, 'Psych', 'Trainer', 89.99, true, true, false),
-    ('Cambridge', 'Black', 7, 'Clerks', 'Dress Shoe', 64.99, true, false, false),
-    ('Still Here', 'Red', 5, 'Shoes Galore', 'Highheel', 129.99, false, true, false),
-    ('Tiny Aligator', 'Greed', 13, 'Psych', 'Sandal', 35.99, false, false, true);
+    ('Cool Air', 'White', 10, 'Psych', 'Trainer', 89.99, true, true, false, 100),
+    ('Cambridge', 'Black', 7, 'Clerks', 'Dress Shoe', 64.99, true, false, false, 0),
+    ('Still Here', 'Red', 5, 'Shoes Galore', 'Highheel', 129.99, false, true, false, 100),
+    ('Tiny Aligator', 'Greed', 13, 'Psych', 'Sandal', 35.99, false, false, true, 100);
 
