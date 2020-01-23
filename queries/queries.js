@@ -38,6 +38,18 @@ const getUsers = (request, response) => {
   });
 };
 
+// const postUserName = (request, response) => {
+//   pool.query(
+//     "INSERT INTO users (username) VALUES ($1) RETURNING id",
+//     (error, results) => {
+//       if (error) {
+//         throw error;
+//       }
+//       response.status(200).json(results.rows);
+//     }
+//   );
+// };
+
 const getUsernames = (request, response) => {
   pool.query(
     "SELECT username, id FROM users ORDER BY id ASC",
