@@ -40,7 +40,6 @@ const getUsers = (request, response) => {
 
 const postUserEmail = (request, response) => {
   const { email } = request.body;
-  console.log(email);
 
   pool.query(
     "INSERT INTO users (email) VALUES ($1)",
