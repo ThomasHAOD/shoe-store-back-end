@@ -40,18 +40,22 @@ const getUsers = (request, response) => {
 
 const postUserEmail = (request, response) => {
   const { email } = request.body;
+  const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+  if (pattern.test(email)) {
+    pool.query(
+      "INSERT INTO users (email) VALUES ($1) RETURNING id",
+      [email],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
 
-  pool.query(
-    "INSERT INTO users (email) VALUES ($1)",
-    [email],
-    (error, results) => {
-      if (error) {
-        throw error;
+        response.status(201).send(results.rows);
       }
-
-      response.status(201).send(results.rows);
-    }
-  );
+    );
+  } else {
+    response.status(500).send(results);
+  }
 };
 
 const getUsernames = (request, response) => {
