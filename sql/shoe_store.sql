@@ -1,6 +1,7 @@
+DROP TABLE shoes_orders;
+DROP TABLE orders;
 DROP TABLE shoes;
 DROP TABLE users;
-
 
 CREATE TABLE users
 (
@@ -8,18 +9,17 @@ CREATE TABLE users
     email VARCHAR(20),
     first_name VARCHAR(30),
     last_name VARCHAR(30),
-    house_number VARCHAR(5),
     street VARCHAR(30),
     town VARCHAR(15),
     post_code VARCHAR(10)
 );
 
 INSERT INTO users
-    (email, first_name, last_name, house_number, street, town, post_code)
+    (email, first_name, last_name, street, town, post_code)
 VALUES
-    ('tam_od@yaya.ya', 'Tam', 'OD', '1', 'Street Road', 'Edinburgh', 'EH1 1CC'),
-    ('jmikey@yaya.ya', 'Jim', 'Michaels', '3', 'Fast Lane', 'London', 'W15 3UX'),
-    ('jamesS@yaya.ya' , 'James', 'Stevenson', '145', 'Moon Cresent', 'Glasgow', 'G1 5UI');
+    ('tam_od@yaya.ya', 'Tam', 'OD', '1 Street Road', 'Edinburgh', 'EH1 1CC'),
+    ('jmikey@yaya.ya', 'Jim', 'Michaels', '14 Fast Lane', 'London', 'W15 3UX'),
+    ('jamesS@yaya.ya' , 'James', 'Stevenson', '234 Moon Cresent', 'Glasgow', 'G1 5UI');
 
 CREATE TABLE shoes
 (
@@ -44,3 +44,16 @@ VALUES
     ('Still Here', 'Red', 5, 'Shoes Galore', 'Highheel', 129.99, false, true, false, 100),
     ('Tiny Aligator', 'Greed', 13, 'Psych', 'Sandal', 35.99, false, false, true, 100);
 
+CREATE TABLE orders
+(
+    ID SERIAL PRIMARY KEY,
+    user_id INT8 REFERENCES users(id) ON DELETE SET NULL,
+    order_date TIMESTAMP
+);
+
+CREATE TABLE shoes_orders
+(
+    ID SERIAL PRIMARY KEY,
+    shoe_id INT8 REFERENCES shoes(id) ON DELETE SET NULL,
+    order_id INT8 REFERENCES orders(id) ON DELETE SET NULL
+);

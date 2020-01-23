@@ -58,6 +58,22 @@ const postUserEmail = (request, response) => {
   }
 };
 
+const putUserDetails = (request, response) => {
+  const { id, firstName, lastName, street, town, postCode } = request.body;
+
+  pool.query(
+    "UPDATE users SET(first_name, last_name, street, town, post_code) = ($2, $3, $4, $5, $6) WHERE id = $1",
+    [id, firstName, lastName, street, town, postCode],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+
+      response.status(201).send(results.rows);
+    }
+  );
+};
+
 const getUsernames = (request, response) => {
   pool.query(
     "SELECT username, id FROM users ORDER BY id ASC",
@@ -86,6 +102,7 @@ module.exports = {
   getShoeById,
   getUsers,
   postUserEmail,
+  putUserDetails,
   getUsernames,
   getUserById
 };
