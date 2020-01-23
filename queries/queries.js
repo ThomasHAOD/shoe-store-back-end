@@ -38,17 +38,21 @@ const getUsers = (request, response) => {
   });
 };
 
-// const postUserName = (request, response) => {
-//   pool.query(
-//     "INSERT INTO users (username) VALUES ($1) RETURNING id",
-//     (error, results) => {
-//       if (error) {
-//         throw error;
-//       }
-//       response.status(200).json(results.rows);
-//     }
-//   );
-// };
+const postUserEmail = (request, response) => {
+  const { email } = request.body;
+
+  pool.query(
+    "INSERT INTO users (email) VALUES ($1)",
+    [email],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+
+      response.status(201).send(results.rows);
+    }
+  );
+};
 
 const getUsernames = (request, response) => {
   pool.query(
@@ -77,6 +81,7 @@ module.exports = {
   getShoes,
   getShoeById,
   getUsers,
+  postUserEmail,
   getUsernames,
   getUserById
 };

@@ -5,7 +5,7 @@ DROP TABLE users;
 CREATE TABLE users
 (
     ID SERIAL PRIMARY KEY,
-    email VARCHAR(20) not NULL,
+    email VARCHAR(20),
     first_name VARCHAR(30),
     last_name VARCHAR(30),
     house_number VARCHAR(5),
