@@ -116,6 +116,56 @@ const getUserById = (request, response) => {
   });
 };
 
+// Orders
+const getOrders = (request, response) => {
+  pool.query("SELECT * FROM orders ORDER BY id ASC", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+
+const postOrder = (request, response) => {
+  const { userId } = request.body;
+  pool.query(
+    "INSERT INTO orders (user_id) VALUES ($1) RETURNING id",
+    [userId],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+
+      response.status(201).send(results.rows);
+    }
+  );
+};
+
+// Shoes_Orders
+const getShoesOrders = (request, response) => {
+  pool.query("SELECT * FROM shoes_orders ORDER BY id ASC", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.status(200).json(results.rows);
+  });
+};
+
+const postShoesOrder = (request, response) => {
+  const { shoeId, orderId } = request.body;
+  pool.query(
+    "INSERT INTO shoes_orders (shoe_id, order_id) VALUES ($1, $2) RETURNING id",
+    [shoeId, orderId],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+
+      response.status(201).send(results.rows);
+    }
+  );
+};
+
 module.exports = {
   getShoes,
   getShoeById,
@@ -124,5 +174,9 @@ module.exports = {
   postUserEmail,
   putUserDetails,
   getUsernames,
-  getUserById
+  getUserById,
+  getOrders,
+  postOrder,
+  getShoesOrders,
+  postShoesOrder
 };

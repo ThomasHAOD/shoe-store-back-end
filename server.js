@@ -46,3 +46,9 @@ app.put("/users/:id", db.putUserDetails);
 app.post("/users", db.postUserEmail);
 app.get("/users/usernames", db.getUsernames);
 app.get("/users/:id", db.getUserById);
+
+app.get("/orders", db.getOrders);
+app.post("/orders", db.postOrder);
+
+app.get("/shoes-orders", db.getShoesOrders);
+app.post("/shoes-orders", db.postShoesOrder);

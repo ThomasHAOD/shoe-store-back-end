@@ -48,8 +48,16 @@ CREATE TABLE orders
 (
     ID SERIAL PRIMARY KEY,
     user_id INT8 REFERENCES users(id) ON DELETE SET NULL,
-    order_date TIMESTAMP
+    order_date TIMESTAMP NOT NULL DEFAULT NOW()
 );
+
+INSERT INTO orders
+    (user_id)
+VALUES
+    (1),
+    (2),
+    (1),
+    (3);
 
 CREATE TABLE shoes_orders
 (
@@ -57,3 +65,12 @@ CREATE TABLE shoes_orders
     shoe_id INT8 REFERENCES shoes(id) ON DELETE SET NULL,
     order_id INT8 REFERENCES orders(id) ON DELETE SET NULL
 );
+
+INSERT INTO shoes_orders
+    (shoe_id, order_id)
+VALUES
+    (1, 3),
+    (2, 4),
+    (3, 3),
+    (1, 1),
+    (4, 2);
