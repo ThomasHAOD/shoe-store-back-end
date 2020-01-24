@@ -27,6 +27,21 @@ const getShoeById = (request, response) => {
   });
 };
 
+const updateShoeStockLevel = (request, response) => {
+  const { id, newStockLevel } = request.body;
+
+  pool.query(
+    "UPDATE shoes SET stock = $2 WHERE id = $1",
+    [id, newStockLevel],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(201).json(results.rows);
+    }
+  );
+};
+
 // Users
 
 const getUsers = (request, response) => {
@@ -100,6 +115,7 @@ const getUserById = (request, response) => {
 module.exports = {
   getShoes,
   getShoeById,
+  updateShoeStockLevel,
   getUsers,
   postUserEmail,
   putUserDetails,
