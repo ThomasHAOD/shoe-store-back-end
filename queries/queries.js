@@ -29,17 +29,21 @@ const getShoeById = (request, response) => {
 
 const updateShoeStockLevel = (request, response) => {
   const { id, newStockLevel } = request.body;
-
-  pool.query(
-    "UPDATE shoes SET stock = $2 WHERE id = $1",
-    [id, newStockLevel],
-    (error, results) => {
-      if (error) {
-        throw error;
+  if (newStockLevel >= 0) {
+    pool.query(
+      "UPDATE shoes SET stock = $2 WHERE id = $1 RETURNING stock",
+      [id, newStockLevel],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        console.log(`[update Stock]`);
+        response.status(201).json(results.rows);
       }
-      response.status(201).json(results.rows);
-    }
-  );
+    );
+  } else {
+    throw error;
+  }
 };
 
 // Users

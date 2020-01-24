@@ -33,7 +33,7 @@ CREATE TABLE shoes
     mens BOOLEAN not NULL,
     womens BOOLEAN not NULL,
     kids BOOLEAN not NULL,
-    stock INT8 not NULL
+    stock INT2 not NULL
 );
 
 INSERT INTO shoes

@@ -39,7 +39,7 @@ app.listen(port, () => {
 
 app.get("/shoes", db.getShoes);
 app.get("/shoes/:id", db.getShoeById);
-app.put("/shoes/:id", db.updateShoeStockLevel);
+app.put("/shoes/:id/updatebasket", db.updateShoeStockLevel);
 
 app.get("/users", db.getUsers);
 app.put("/users/:id", db.putUserDetails);
