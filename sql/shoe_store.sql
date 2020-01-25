@@ -48,16 +48,17 @@ CREATE TABLE orders
 (
     ID SERIAL PRIMARY KEY,
     user_id INT8 REFERENCES users(id) ON DELETE SET NULL,
-    order_date TIMESTAMP NOT NULL DEFAULT NOW()
+    order_date TIMESTAMP NOT NULL DEFAULT NOW(),
+    total_cost REAL NOT NULL
 );
 
 INSERT INTO orders
-    (user_id)
+    (user_id, total_cost)
 VALUES
-    (1),
-    (2),
-    (1),
-    (3);
+    (1, 139.99),
+    (2, 222.77),
+    (1, 85.44),
+    (3, 66.66);
 
 CREATE TABLE shoes_orders
 (

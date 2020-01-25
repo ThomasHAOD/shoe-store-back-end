@@ -127,18 +127,29 @@ const getOrders = (request, response) => {
 };
 
 const postOrder = (request, response) => {
-  const { userId } = request.body;
-  pool.query(
-    "INSERT INTO orders (user_id) VALUES ($1) RETURNING id",
-    [userId],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
+  const { userId, basket, clientPrice } = request.body;
+  let price = 0;
+  basket.forEach(shoe => {
+    price += shoe.price;
+  });
+  console.log(price);
+  console.log(clientPrice);
+  console.log(basket);
 
-      response.status(201).send(results.rows);
-    }
-  );
+  const totalPrice = price.toFixed(2);
+  if (totalPrice === clientPrice) {
+    pool.query(
+      "INSERT INTO orders (user_id, total_cost) VALUES ($1, $2) RETURNING id",
+      [userId, totalPrice],
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+
+        response.status(201).send(results.rows);
+      }
+    );
+  }
 };
 
 // Shoes_Orders
