@@ -126,6 +126,21 @@ const getOrders = (request, response) => {
   });
 };
 
+const getUserOrders = (request, response) => {
+  const userId = request.params.id;
+
+  pool.query(
+    "SELECT * FROM orders WHERE user_id = $1",
+    [userId],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const postOrder = (request, response) => {
   const { userId, basket, clientPrice } = request.body;
   let price = 0;
@@ -187,6 +202,7 @@ module.exports = {
   getUsernames,
   getUserById,
   getOrders,
+  getUserOrders,
   postOrder,
   getShoesOrders,
   postShoesOrder

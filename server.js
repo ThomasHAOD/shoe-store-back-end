@@ -48,6 +48,7 @@ app.get("/users/usernames", db.getUsernames);
 app.get("/users/:id", db.getUserById);
 
 app.get("/orders", db.getOrders);
+app.get("/orders/users/:id", db.getUserOrders);
 app.post("/orders", db.postOrder);
 
 app.get("/shoes-orders", db.getShoesOrders);
