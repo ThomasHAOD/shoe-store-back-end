@@ -37,7 +37,6 @@ const updateShoeStockLevel = (request, response) => {
         if (error) {
           throw error;
         }
-        console.log(`[update Stock]`);
         response.status(201).json(results.rows);
       }
     );
@@ -147,9 +146,6 @@ const postOrder = (request, response) => {
   basket.forEach(shoe => {
     price += shoe.price;
   });
-  console.log(price);
-  console.log(clientPrice);
-  console.log(basket);
 
   const totalPrice = price.toFixed(2);
   if (totalPrice === clientPrice) {
